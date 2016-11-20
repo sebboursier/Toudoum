@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 Veuillez compléter vos informations
+  form(action='/users/add', method='post')
+    div
+      label(for='pseudo') Pseudo :
+      input#pseudo(type='text', placeholder='Pseudo', name='pseudo', required)
+    div
+      label(for='password') Mot de passe :
+      input#password(type='text', placeholder='Password', name='password', required)
+    button(type='submit') Ajouter

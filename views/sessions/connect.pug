@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1 Veuillez vous connecter
+  h2= message
+  form(action='/sessions', method='post')
+    div
+      label(for='pseudo') Pseudo :
+      input(type='text', placeholder='Pseudo' name='pseudo')
+    div
+      label(for='password') Mot de passe :
+      input(type='password', placeholder='Password' name='password')
+    button(type='submit') Connexion
