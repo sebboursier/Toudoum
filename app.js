@@ -39,6 +39,7 @@ sqlite.open(`./db.sqlite`).then((result) => {
   // ROUTING Public
   app.use('/', require('./routes/index'))
   app.use('/sessions', require('./routes/sessions'))
+  app.use('/users', require('./routes/users'))
 
   // Check Authentification
   app.use((req, res, next) => {
@@ -64,14 +65,16 @@ sqlite.open(`./db.sqlite`).then((result) => {
         checkSession(id, req.session.token)
       },
       json: () => {
-        // TODO
+        // POUR LE JON : il faut un champ id et un champ token dans le header.
+        checkSession(req.headers.id, req.headers.token)
       }
     })
   })
 
   // ROUTING necessitant une Authentification
-  app.use('/users', require('./routes/users'))
   app.use('/todos', require('./routes/todos'))
+  app.use('/teams/todos', require('./routes/teams.todos'))
+  app.use('/teams', require('./routes/teams'))
 
   // Erreur 404
   app.use((req, res, next) => {

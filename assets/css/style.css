@@ -3,3 +3,25 @@ body {
   font: 1.2em Helvetica, "Lucida grande", Arial, sans-serif;
   color: #ffffff;
 }
+
+.navbar {
+  border-radius: 0px !important;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.form {
+  text-align: center;
+}
+
+.left {
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.form-inline {
+  width: 100%;
+}

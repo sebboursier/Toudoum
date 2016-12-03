@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+  div.col-md-6.col-md-offset-3
+    section.panel.panel-default
+      article.panel-heading Liste des Teams
+      article.panel-body
+
+        div.well Votre team actuel : #{teamActuel}
+
+        form.form-inline(action='/teams/add', method='post')
+          div.input-group
+            label.input-group-addon(for='name')
+              span.glyphicon.glyphicon-tag
+            input.form-control#name(type='text', placeholder='Nom' name='name', required)
+          input.btn.btn-info(type='submit', value='Ajouter')
+
+        ul.list-group
+          each team in teams
+            li.list-group-item
+              form(action='/teams/join/'+team, method='post')
+                div.list-group-item-heading
+                  button.btn.btn-info.left(type='submit')
+                    span.glyphicon.glyphicon-ok
+                  h4 #{team}

@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
   })
 })
 
-// Accord d'une connection
+// Essaie et accord d'une connection
 router.post('/', (req, res, next) => {
   daoUser.getUserByPseudo(req.body.pseudo)
     .then((user) => {
@@ -43,8 +43,8 @@ router.post('/', (req, res, next) => {
             daoSession.addSession(user.data.id, token).then((result) => {
               res.format({
                 html: () => {
-                  req.session.token = token
-                  req.session.user = user.data
+                  req.session.token = token,
+                  req.session.user = user.data,
                   res.render('sessions/ok', {
                     user: req.session.user
                   })
@@ -53,6 +53,7 @@ router.post('/', (req, res, next) => {
                   res.set(`Content-Type`, 'application/vnd.api+json')
                   res.send({
                     data: {
+                      id: user.data.id,
                       token: token
                     }
                   })

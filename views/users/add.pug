@@ -1,12 +1,25 @@
 extends ../layout
 
 block content
-  h1 Veuillez compléter vos informations
-  form(action='/users/add', method='post')
-    div
-      label(for='pseudo') Pseudo :
-      input#pseudo(type='text', placeholder='Pseudo', name='pseudo', required)
-    div
-      label(for='password') Mot de passe :
-      input#password(type='text', placeholder='Password', name='password', required)
-    button(type='submit') Ajouter
+
+  div.col-md-8.col-md-offset-2
+    section.panel.panel-info
+      article.panel-heading Veuillez compléter vos informations
+      article.panel-body
+        form.form(action='/users/add', method='post')
+          div.input-group
+            label.input-group-addon(for='pseudo')
+              span.glyphicon.glyphicon-user
+            input.form-control#pseudo(type='text', placeholder='Pseudo' name='pseudo', required)
+          div.input-group
+            label.input-group-addon(for='password')
+              span.glyphicon.glyphicon-lock
+            input.form-control#password(type='password', placeholder='Password' name='password', required)
+          input.btn.btn-default(type='submit', value='Ajouter')
+
+    div.col-md-6.col-md-offset-3
+      section.panel.panel-warning
+        article.panel-heading Déjà un compte?
+        article.panel-body
+          span Veuillez vous connecter
+          a(href='/sessions')  ici

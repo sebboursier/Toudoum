@@ -1,13 +1,27 @@
 extends ../layout
 
 block content
-  h1 Veuillez vous connecter
-  h2= message
-  form(action='/sessions', method='post')
-    div
-      label(for='pseudo') Pseudo :
-      input(type='text', placeholder='Pseudo' name='pseudo')
-    div
-      label(for='password') Mot de passe :
-      input(type='password', placeholder='Password' name='password')
-    button(type='submit') Connexion
+
+  div.col-md-8.col-md-offset-2
+    section.panel.panel-info
+      article.panel-heading Veuillez vous connecter
+      article.panel-body
+        if message
+          div.alert.alert-danger= message
+        form.form(action='/sessions', method='post')
+          div.input-group
+            label.input-group-addon(for='pseudo')
+              span(class='glyphicon glyphicon-user')
+            input.form-control#pseudo(type='text', placeholder='Pseudo' name='pseudo')
+          div.input-group
+            label.input-group-addon(for='password')
+              span.glyphicon.glyphicon-lock
+            input.form-control#password(type='password', placeholder='Password' name='password')
+          input.btn.btn-default(type='submit', value='Connexion')
+
+  div.col-md-6.col-md-offset-3
+    section.panel.panel-warning
+      article.panel-heading Pas encore de compte?
+      article.panel-body
+        span Pour créer un nouveau compte, veuillez vous inscrire
+        a(href='/users/add')  ici

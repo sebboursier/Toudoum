@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+
+  div.col-md-6.col-md-offset-3
+    section.panel.panel-default
+      article.panel-heading Voici votre TodoList
+      article.panel-body
+
+        form.form-inline(action='/todos/add', method='post')
+          div.input-group
+            label.input-group-addon(for='subject')
+              span.glyphicon.glyphicon-tag
+            input.form-control#pseudo(type='text', placeholder='Sujet' name='subject', required)
+          input.btn.btn-info(type='submit', value='Ajouter')
+
+        ul.list-group
+          each todo in todos
+            li.list-group-item
+              form(action='/todos/switch/'+todo._id, method='post')
+                div.list-group-item-heading
+                  if todo.completedAt
+                    button.btn.btn-success.left(type='submit')
+                      span.glyphicon.glyphicon-check
+                  else
+                    button.btn.btn-warning.left(type='submit')
+                      span.glyphicon.glyphicon-unchecked
+                  h4 #{todo.subject}
+                div.list-group-item-text
+                  span crée le : #{todo.createdAt}
+                  if todo.completedAt
+                    span complété le : #{todo.completedAt}
