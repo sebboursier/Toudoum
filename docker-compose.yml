@@ -13,6 +13,8 @@ services:
       - dependencies:/app/node_modules
     links:
       - db-mongo
+    environment:
+      - MONGO_HOST=db-mongo
     networks:
       - front-tier
       - back-tier
